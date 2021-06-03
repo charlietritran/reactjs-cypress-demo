@@ -23,7 +23,9 @@
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --spec 'cypress/integration/*'",
-    "cypress:ci": "concurrently \"cypress run\" --kill-others \"ng serve\" --success first"
+    "cypress:ci": "concurrently \"cypress run\" --kill-others \"ng serve\" --success first",
+    "cypress:headless": "cypress run --browser chrome --headless"
+    
   },
   "eslintConfig": {
     "extends": "react-app"
