@@ -8,11 +8,11 @@ pipeline {
     }
 
     stages {
-        /*stage('Dependencies') {
+        stage('Dependencies') {
             steps {
-                sh 'npm i'git 
+                sh 'npm i'
             }
-        }*/
+        }
         stage('Build') {
             steps {
                 sh 'npm start'
