@@ -1,29 +1,36 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
+    agent any
+
+    tools {nodejs "node"}
+
     environment {
-        CI = 'true'
+        CHROME_BIN = '/bin/google-chrome'
     }
+
     stages {
+        /*stage('Dependencies') {
+            steps {
+                sh 'npm i'git 
+            }
+        }*/
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'npm start'
             }
         }
-        stage('Test') {
+        stage('Unit Tests') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                sh 'npx cypress run'
             }
         }
-        stage('Deliver') {
+        stage('e2e Tests') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                echo 'e2e Testing....'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
