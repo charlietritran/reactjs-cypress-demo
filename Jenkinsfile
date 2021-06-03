@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
-                sh 'npx cypress run'
+                sh 'npx cypress run --headless'
             }
         }
         stage('e2e Tests') {
