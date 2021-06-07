@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'npm start --port 3006'
-                sh 'sleep 60'
+                sh 'sleep 120'
             }
         }
         stage('Unit Tests') {
