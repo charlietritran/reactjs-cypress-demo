@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'npm start'
+                sh 'npm start t --port 3006'
             }
         }
         stage('Unit Tests') {
