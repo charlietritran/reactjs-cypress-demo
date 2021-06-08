@@ -22,6 +22,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh 'npm run cypress:headless'
+                sh 'npm start'
             }
         }
         stage('e2e Tests') {
