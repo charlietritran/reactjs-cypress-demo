@@ -13,11 +13,20 @@ pipeline {
                 sh 'npm i'
             }
         }
-        stage('Build') {
+        stage('Build and start local server for react app in background') {
             steps {
-                sh 'npm start'
+                echo 'Runnig npm start in background'
+                sh 'npm start &'
             }
         }
+        /*stage('start local server') {
+            steps {
+                // start local server in the background
+                // we will shut it down in "post" command block
+                sh 'nohup npm run start'
+            }
+        }*/
+
         stage('Unit Tests') {
             steps {
                 sh 'npm run cypress:headless'
@@ -35,4 +44,13 @@ pipeline {
             }
         }
     }
+
+    post {
+    // shutdown the server running in the background
+    always {
+      echo 'Stopping local server'
+      sh 'pkill -f http-server'
+    }
+  }
+
 }
