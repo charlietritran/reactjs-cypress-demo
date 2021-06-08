@@ -16,13 +16,13 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'npm run build --port 3006'
-                sh 'sleep 120'
+                sh 'npm start'
             }
         }
         stage('Unit Tests') {
             steps {
                 sh 'npm run cypress:headless'
-                sh 'npm start'
+                
             }
         }
         stage('e2e Tests') {
