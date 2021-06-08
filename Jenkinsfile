@@ -16,7 +16,19 @@ pipeline {
         stage('Build and start local server for react app in background') {
             steps {
                 echo 'Runnig npm start in background'
+                sh 'set -x'
                 sh 'npm start &'
+                sh 'sleep 1'
+                sh 'echo $! > .pidfile'
+                sh 'set +x'
+
+                echo "\n\n-- Running on machine: " + "hostname".execute().text
+
+                echo "\n\n-- SLAVE " + Jenkins.getInstance().getComputer(env['NodeJS10.24.1']).getHostName()
+
+                echo "\n\n-- MASTER: " + Jenkins.getInstance().getComputer('').getHostName()
+
+
             }
         }
         /*stage('start local server') {
