@@ -16,11 +16,11 @@ pipeline {
         stage('Build and start local server for react app in background') {
             steps {
                 echo 'Runnig npm start in background'
-                sh 'set -x'
+                //sh 'set -x'
                 sh 'npm start &'
-                sh 'sleep 1'
-                sh 'echo $! > .pidfile'
-                sh 'set +x'
+                //sh 'sleep 1'
+                //sh 'echo $! > .pidfile'
+                //sh 'set +x'
 
 
             }
